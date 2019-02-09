@@ -26,21 +26,21 @@ $("#addTopic").on("click", function(event){
 
 });
 
-function imageChangeState() {
-
+function imageMove(){
+    // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
     var state = $(this).attr("data-state");
-    var animateImage = $(this).attr("data-animate");
-    var stillImage = $(this).attr("data-still");
-
-    if (state == "still") {
-        $(this).attr("src", animateImage);
-        $(this).attr("data-state", "animate");
-    }
-    else if (state == "animate") {
-        $(this).attr("src", stillImage);
-        $(this).attr("data-state", "still");
+    // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+    // Then, set the image's data-state to animate
+    // Else set src to the data-still value
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
     }
 }
+
 
 
 $(document).on("click", ".sportsButton", function(event){
@@ -77,7 +77,7 @@ $(document).on("click", ".sportsButton", function(event){
               gifDiv.append(image);
               $("#gifHolder").prepend(gifDiv);
             }
-            imageChangeState()
+        imageMove();
         });
 
 
